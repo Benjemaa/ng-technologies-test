@@ -1,0 +1,43 @@
+<div *ngIf="loading" class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
+        {{ progress }}%
+    </div>
+</div>
+
+<label class="btn btn-default">
+    <label> Select Pdf : &nbsp;&nbsp;&nbsp;</label>
+    <input type="file" accept=".pdf" (change)="selectPdf($event)" />
+</label>
+<label class="btn btn-default">
+    <label> Select image : &nbsp;&nbsp;&nbsp; </label>
+    <input type="file" accept="image/png, image/jpeg" (change)="selectImage($event)" />
+</label>
+<label class="btn btn-default">
+    <label> Select page number : &nbsp;&nbsp;&nbsp; </label>
+    <input type="number" [(ngModel)]="page" />
+</label>
+<label class="btn btn-default">
+    <label> Select X coordinate : &nbsp;&nbsp;&nbsp; </label>
+    <input type="number" [(ngModel)]="xCoordinate" />
+</label>
+<label class="btn btn-default">
+    <label> Select Y coordinate : &nbsp;&nbsp;&nbsp; </label>
+    <input type="number" [(ngModel)]="yCoordinate" />
+</label>
+<br>
+
+<button class="btn btn-success" [disabled]="!image || !pdf" (click)="upload()">
+    Upload
+</button>
+
+<div class="alert alert-light" role="alert">{{ message }}</div>
+
+<div class="card">
+    <div class="card-header">List of Files</div>
+    <!-- <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
+        <li class="list-group-item">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+        </li>
+    </ul> -->
+</div>
